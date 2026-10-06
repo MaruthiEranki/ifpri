@@ -134,18 +134,18 @@
     .heading-copy { min-width: 0; }
     .primary-action { min-height: 40px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 0 14px; border: 0; border-radius: 2px; color: #fff; background: var(--forest); font-size: 11px; font-weight: 700; white-space: nowrap; }
     .primary-action:hover { background: var(--forest-deep); }
-    .primary-action span { color: var(--lime); font-size: 17px; font-weight: 400; }
-    .schemes-panel { margin-top: 22px; }
-    .scheme-toolbar { min-height: 42px; display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 9px; }
-    .scheme-count { color: #7d8981; font-size: 10px; }
+    .primary-action span:first-child { color: var(--lime); font-size: 17px; font-weight: 400; }
+    .records-panel { margin-top: 22px; }
+    .record-toolbar { min-height: 42px; display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 9px; }
+    .record-count { color: #7d8981; font-size: 10px; }
     .archive-toggle { padding: 7px 0; border: 0; color: var(--forest); background: transparent; font-size: 10px; font-weight: 700; }
     .archive-toggle:hover { text-decoration: underline; }
-    .scheme-table { width: 100%; border-collapse: collapse; background: #fff; }
-    .scheme-table th { padding: 12px 15px; border-bottom: 1px solid #dfe3da; color: #849087; background: #fbfcf9; font-size: 9px; font-weight: 700; letter-spacing: .1em; text-align: left; text-transform: uppercase; }
-    .scheme-table th:last-child { text-align: right; }
-    .scheme-table td { padding: 14px 15px; border-bottom: 1px solid #edf0e9; color: #43534b; font-size: 11px; line-height: 1.5; }
-    .scheme-table tr:last-child td { border-bottom: 0; }
-    .scheme-table td:first-child { width: 68%; color: #263a32; font-weight: 600; }
+    .record-table { width: 100%; border-collapse: collapse; background: #fff; }
+    .record-table th { padding: 12px 15px; border-bottom: 1px solid #dfe3da; color: #849087; background: #fbfcf9; font-size: 9px; font-weight: 700; letter-spacing: .1em; text-align: left; text-transform: uppercase; }
+    .record-table th:last-child { text-align: right; }
+    .record-table td { padding: 14px 15px; border-bottom: 1px solid #edf0e9; color: #43534b; font-size: 11px; line-height: 1.5; }
+    .record-table tr:last-child td { border-bottom: 0; }
+    .record-table td:first-child { width: 68%; color: #263a32; font-weight: 600; }
     .scheme-status { display: inline-flex; align-items: center; gap: 6px; color: #7f7563; font-size: 9px; white-space: nowrap; }
     .scheme-status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #b8a16f; }
     .scheme-status[data-status="Active"] { color: #416d4d; }
@@ -155,18 +155,20 @@
     .row-action:hover { border-color: #9eab9f; background: #f7f9f4; }
     .row-action.archive-action { color: #a05240; }
     .row-action.archive-action:hover { border-color: #d9a697; background: #fff8f5; }
-    .scheme-feedback { min-height: 20px; margin: 10px 0; color: #55704f; font-size: 10px; }
-    .scheme-dialog { width: min(440px, calc(100vw - 32px)); padding: 0; border: 1px solid #dfe4da; border-radius: 3px; color: var(--ink); background: #fff; box-shadow: 0 22px 70px rgb(20 40 30 / 22%); }
-    .scheme-dialog::backdrop { background: rgb(18 38 30 / 44%); }
-    .scheme-dialog form { padding: 26px; }
-    .scheme-dialog h2 { margin: 0; font: 400 27px/1.2 var(--serif); }
-    .scheme-dialog-intro { margin: 8px 0 24px; color: var(--muted); font-size: 11px; }
-    .scheme-dialog .field { margin-bottom: 17px; }
-    .scheme-dialog .field input, .scheme-dialog .field select { width: 100%; height: 44px; padding: 0 12px; border: 1px solid #dce1d8; border-radius: 2px; color: var(--ink); background: #fff; font-size: 12px; }
+    .record-feedback { min-height: 20px; margin: 10px 0; color: #55704f; font-size: 10px; }
+    .record-dialog { width: min(780px, calc(100vw - 32px)); max-height: calc(100dvh - 24px); overflow-y: auto; padding: 0; border: 1px solid #dfe4da; border-radius: 3px; color: var(--ink); background: #fff; box-shadow: 0 22px 70px rgb(20 40 30 / 22%); }
+    .record-dialog::backdrop { background: rgb(18 38 30 / 44%); }
+    .record-dialog form { padding: 26px; }
+    .record-dialog h2 { margin: 0; font: 400 27px/1.2 var(--serif); }
+    .record-dialog-intro { margin: 8px 0 24px; color: var(--muted); font-size: 11px; }
+    .record-form-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; }
+    .record-dialog .field { min-width: 0; margin-bottom: 15px; }
+    .record-dialog .field input, .record-dialog .field select, .record-dialog .field textarea { width: 100%; min-height: 42px; padding: 10px 12px; border: 1px solid #dce1d8; border-radius: 2px; color: var(--ink); background: #fff; font-size: 11px; }
+    .record-dialog .field textarea { min-height: 60px; resize: vertical; line-height: 1.5; }
     .dialog-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 23px; }
     .dialog-cancel { min-height: 38px; padding: 0 13px; border: 1px solid #dfe4da; border-radius: 2px; color: #43534b; background: #fff; font-size: 11px; }
     .dialog-save { min-height: 38px; padding: 0 14px; border: 0; border-radius: 2px; color: #fff; background: var(--forest); font-size: 11px; font-weight: 700; }
-    .schemes-empty { padding: 32px 15px; color: var(--muted); background: #fff; font-size: 12px; text-align: center; }
+    .records-empty { padding: 32px 15px; color: var(--muted); background: #fff; font-size: 12px; text-align: center; }
 
     @keyframes arrive { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
@@ -191,15 +193,17 @@
       .topbar { min-height: 56px; padding: 0 20px; }
       .content { padding: 30px 22px; }
       .content-heading h1 { font-size: 31px; }
-      .scheme-table thead { display: none; }
-      .scheme-table, .scheme-table tbody { display: block; }
-      .scheme-table tbody tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0 12px; padding: 12px 13px; border-bottom: 1px solid #edf0e9; }
-      .scheme-table tbody tr:last-child { border-bottom: 0; }
-      .scheme-table td { padding: 4px 0; border: 0; }
-      .scheme-table td:first-child { width: auto; grid-column: 1 / -1; padding-bottom: 8px; }
-      .scheme-table td:last-child { justify-self: end; }
+      .record-table thead { display: none; }
+      .record-table, .record-table tbody { display: block; }
+      .record-table tbody tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0 12px; padding: 12px 13px; border-bottom: 1px solid #edf0e9; }
+      .record-table tbody tr:last-child { border-bottom: 0; }
+      .record-table td { padding: 4px 0; border: 0; }
+      .record-table td:first-child { width: auto; grid-column: 1 / -1; padding-bottom: 8px; }
+      .record-table td:last-child { justify-self: end; }
       .scheme-actions { gap: 5px; }
       .row-action { min-height: 29px; padding: 0 8px; }
+      .record-dialog form { padding: 21px; }
+      .record-form-fields { grid-template-columns: 1fr; }
     }
     @media (max-width: 380px) {
       .nav-list { grid-template-columns: 1fr; }
@@ -281,18 +285,18 @@
       <div class="content">
         <div class="content-heading">
           <div class="heading-copy"><div class="eyebrow">Workspace section</div><h1 id="sectionTitle">Knowledge Upload</h1></div>
-          <button id="addSchemeButton" class="primary-action" type="button" hidden><span aria-hidden="true">+</span>Add scheme</button>
+          <button id="addRecordButton" class="primary-action" type="button" hidden><span aria-hidden="true">+</span><span id="addRecordLabel">Add record</span></button>
         </div>
-        <section id="schemesPanel" class="schemes-panel" aria-label="Schemes list" hidden>
-          <div class="scheme-toolbar">
-            <div id="schemeCount" class="scheme-count" aria-live="polite"></div>
+        <section id="recordsPanel" class="records-panel" aria-label="Records list" hidden>
+          <div class="record-toolbar">
+            <div id="recordCount" class="record-count" aria-live="polite"></div>
             <button id="archiveToggle" class="archive-toggle" type="button" hidden></button>
           </div>
-          <table class="scheme-table">
-            <thead><tr><th scope="col">Scheme name</th><th scope="col">Status</th><th scope="col">Actions</th></tr></thead>
-            <tbody id="schemeRows"></tbody>
+          <table class="record-table">
+            <thead><tr><th id="recordNameHeader" scope="col">Name</th><th id="recordStatusHeader" scope="col" hidden>Status</th><th scope="col">Actions</th></tr></thead>
+            <tbody id="recordRows"></tbody>
           </table>
-          <p id="schemeFeedback" class="scheme-feedback" aria-live="polite"></p>
+          <p id="recordFeedback" class="record-feedback" aria-live="polite"></p>
         </section>
         <div id="genericContentSpace" class="empty-space" aria-live="polite"></div>
         <footer class="content-footer">IFPRI · PROGRAM INTELLIGENCE</footer>
@@ -300,24 +304,14 @@
     </section>
   </main>
 
-  <dialog id="schemeDialog" class="scheme-dialog" aria-labelledby="schemeDialogTitle">
-    <form id="schemeForm">
-      <h2 id="schemeDialogTitle">Add scheme</h2>
-      <p class="scheme-dialog-intro">Add a scheme to this workspace list.</p>
-      <div class="field">
-        <label for="schemeNameInput">Scheme name</label>
-        <input id="schemeNameInput" name="schemeName" type="text" maxlength="180" required>
-      </div>
-      <div class="field">
-        <label for="schemeStatusInput">Status</label>
-        <select id="schemeStatusInput" name="schemeStatus">
-          <option value="Inactive">Inactive</option>
-          <option value="Active">Active</option>
-        </select>
-      </div>
+  <dialog id="recordDialog" class="record-dialog" aria-labelledby="recordDialogTitle">
+    <form id="recordForm">
+      <h2 id="recordDialogTitle">Add record</h2>
+      <p id="recordDialogIntro" class="record-dialog-intro"></p>
+      <div id="recordFormFields" class="record-form-fields"></div>
       <div class="dialog-actions">
-        <button class="dialog-cancel" type="button" id="cancelSchemeButton">Cancel</button>
-        <button class="dialog-save" type="submit">Save scheme</button>
+        <button class="dialog-cancel" type="button" id="cancelRecordButton">Cancel</button>
+        <button id="saveRecordButton" class="dialog-save" type="submit">Save</button>
       </div>
     </form>
   </dialog>
@@ -330,84 +324,170 @@
     const passwordInput = document.querySelector("#password");
     const formError = document.querySelector("#formError");
     const revealPassword = document.querySelector("#revealPassword");
-    const schemesPanel = document.querySelector("#schemesPanel");
-    const schemeRows = document.querySelector("#schemeRows");
-    const schemeDialog = document.querySelector("#schemeDialog");
-    const schemeForm = document.querySelector("#schemeForm");
-    const schemeNameInput = document.querySelector("#schemeNameInput");
-    const schemeStatusInput = document.querySelector("#schemeStatusInput");
-    const schemeStorageKey = "ifpri-schemes";
-    const sampleSchemeNames = [
-      "Wheel Hoe (Inter-cultivation Tool)",
-      "Animal-Drawn Seed Drill",
-      "Manual Scythe (Harvesting Tool)",
-      "Wire Fence",
-      "Tarpaulin Sheet",
-      "Distribution of Improved Fodder Seed Mini Kits to Scheduled Tribe Farmers/Livestock Rearers",
-      "Assistance Scheme for Purchase of Two Indigenous Cows for Natural Farming for Scheduled Tribe Beneficiaries",
-      "Incentive Scheme for Livestock Rearers for Calves Born through Artificial Insemination in Indigenous Cows under the Pure Breeding Programme",
-      "Assistance Scheme for Purchase of Two Indigenous Cows for Natural Farming for General Category Beneficiaries",
-      "Assistance Scheme for Distribution of Improved Fodder Seed Mini Kits to General Category Farmers/Livestock Rearers",
-      "Assistance Scheme for Construction of Cattle Shed and Water Tank for Scheduled Caste Livestock Rearers (for Two Cattle – Cow/Buffalo Category)",
-      "Assistance Scheme for Rearing Heifer Calves",
-      "Feed Assistance Scheme for Pregnant and Recently Calved Cattle (Cow/Buffalo) of Livestock Rearers",
-      "Farmer Unique ID (Farmer Unique Card)",
-      "Minimum Support Price (MSP) for Wheat",
-      "Demonstration Kit",
-      "Livestock Insurance Assistance Scheme",
-      "Integrated Crop Management (ICM) Scheme",
-      "Close Spacing Technique (CST) Scheme"
-    ];
-    let schemes;
-    try {
-      const savedSchemes = JSON.parse(localStorage.getItem(schemeStorageKey));
-      schemes = Array.isArray(savedSchemes) ? savedSchemes : null;
-    } catch {
-      schemes = null;
-    }
-    if (!schemes) schemes = sampleSchemeNames.map((name, index) => ({ id: `sample-${index}`, name, status: "Inactive", archived: false }));
+    const recordsPanel = document.querySelector("#recordsPanel");
+    const recordRows = document.querySelector("#recordRows");
+    const recordDialog = document.querySelector("#recordDialog");
+    const recordForm = document.querySelector("#recordForm");
+    const recordFormFields = document.querySelector("#recordFormFields");
+    const recordStoragePrefix = "ifpri-records-";
+    const sectionSchemas = {
+      Schemes: {
+        fields: [
+          "Scheme Name", "Description", "Eligibility Criteria", "Application form",
+          "Schemes official source", "If available - FAQ", "Occupation", "Owner",
+          "Reach", "Impact", "Learnings", "Case studies references", "SEWA vertical",
+          "Good to have citizens testimonials and experiance about the schmemes", "Active/Inactive"
+        ],
+        samples: [
+          "Wheel Hoe (Inter-cultivation Tool)",
+          "Animal-Drawn Seed Drill",
+          "Manual Scythe (Harvesting Tool)",
+          "Wire Fence",
+          "Tarpaulin Sheet",
+          "Distribution of Improved Fodder Seed Mini Kits to Scheduled Tribe Farmers/Livestock Rearers",
+          "Assistance Scheme for Purchase of Two Indigenous Cows for Natural Farming for Scheduled Tribe Beneficiaries",
+          "Incentive Scheme for Livestock Rearers for Calves Born through Artificial Insemination in Indigenous Cows under the Pure Breeding Programme",
+          "Assistance Scheme for Purchase of Two Indigenous Cows for Natural Farming for General Category Beneficiaries",
+          "Assistance Scheme for Distribution of Improved Fodder Seed Mini Kits to General Category Farmers/Livestock Rearers",
+          "Assistance Scheme for Construction of Cattle Shed and Water Tank for Scheduled Caste Livestock Rearers (for Two Cattle – Cow/Buffalo Category)",
+          "Assistance Scheme for Rearing Heifer Calves",
+          "Feed Assistance Scheme for Pregnant and Recently Calved Cattle (Cow/Buffalo) of Livestock Rearers",
+          "Farmer Unique ID (Farmer Unique Card)",
+          "Minimum Support Price (MSP) for Wheat",
+          "Demonstration Kit",
+          "Livestock Insurance Assistance Scheme",
+          "Integrated Crop Management (ICM) Scheme",
+          "Close Spacing Technique (CST) Scheme"
+        ]
+      },
+      Programs: {
+        fields: [
+          "Name", "Description", "Goal", "Target user group", "Target Geogrpahies",
+          "Impact", "Short comings", "Learnings", "case studies references",
+          "SEWA vertical", "Program Web link", "Any other reference material"
+        ],
+        samples: []
+      },
+      Campaigns: {
+        fields: [
+          "Name", "Description", "Goal", "Target user group", "Key geographies",
+          "Target livelihood", "Duration", "vertical", "Impact", "Reach",
+          "Case study reference", "Campaign web link", "Reference resources"
+        ],
+        samples: [
+          "Agriculture campaining", "Swacch Aakash Campaign", "Technology", "Kamla",
+          "Loan", "Homestays", "Land rights", "SMS", "GTNFW", "Vima Sakhi", "Business units"
+        ]
+      }
+    };
     let showingArchived = false;
-    let editingSchemeId = null;
+    let activeRecordSection = "Schemes";
+    let editingRecordId = null;
+    let recordSequence = 0;
 
-    function persistSchemes() {
-      localStorage.setItem(schemeStorageKey, JSON.stringify(schemes));
+    function createRecord(section, name, id) {
+      const schema = sectionSchemas[section];
+      const fields = Object.fromEntries(schema.fields.map((field) => [field, ""]));
+      fields[schema.fields[0]] = name;
+      if (schema.fields.includes("Active/Inactive")) fields["Active/Inactive"] = "Inactive";
+      return { id, fields, archived: false };
     }
 
     function escapeHTML(value) {
       return String(value).replace(/[&<>"']/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" })[character]);
     }
 
-    function renderSchemes() {
-      const visibleSchemes = schemes.filter((scheme) => Boolean(scheme.archived) === showingArchived);
-      const archivedCount = schemes.filter((scheme) => scheme.archived).length;
-      document.querySelector("#schemeCount").textContent = `${visibleSchemes.length} ${showingArchived ? "archived" : "schemes"}`;
+    function normalizeRecord(section, record, index) {
+      const schema = sectionSchemas[section];
+      const fields = Object.fromEntries(schema.fields.map((field) => [field, ""]));
+      schema.fields.forEach((field) => {
+        const value = record.fields?.[field];
+        if (typeof value === "string") fields[field] = value;
+      });
+      if (!fields[schema.fields[0]] && typeof record.name === "string") fields[schema.fields[0]] = record.name;
+      if (schema.fields.includes("Active/Inactive") && record.status) fields["Active/Inactive"] = record.status;
+      if (schema.fields.includes("Active/Inactive") && !fields["Active/Inactive"]) fields["Active/Inactive"] = "Inactive";
+      return { id: record.id ?? `legacy-${section}-${index}`, fields, archived: Boolean(record.archived) };
+    }
+
+    const recordsBySection = Object.fromEntries(Object.entries(sectionSchemas).map(([section, schema]) => {
+      let savedRecords;
+      try {
+        savedRecords = JSON.parse(localStorage.getItem(`${recordStoragePrefix}${section.toLowerCase()}`));
+      } catch {
+        savedRecords = null;
+      }
+      if (!Array.isArray(savedRecords) && section === "Schemes") {
+        try {
+          savedRecords = JSON.parse(localStorage.getItem("ifpri-schemes"));
+        } catch {
+          savedRecords = null;
+        }
+      }
+      const records = Array.isArray(savedRecords)
+        ? savedRecords.map((record, index) => normalizeRecord(section, record, index))
+        : schema.samples.map((name, index) => createRecord(section, name, `sample-${section.toLowerCase()}-${index}`));
+      return [section, records];
+    }));
+
+    function persistRecords(section = activeRecordSection) {
+      localStorage.setItem(`${recordStoragePrefix}${section.toLowerCase()}`, JSON.stringify(recordsBySection[section]));
+    }
+
+    function renderRecords() {
+      const schema = sectionSchemas[activeRecordSection];
+      const records = recordsBySection[activeRecordSection];
+      const nameField = schema.fields[0];
+      const statusField = schema.fields.includes("Active/Inactive") ? "Active/Inactive" : null;
+      const visibleRecords = records.filter((record) => Boolean(record.archived) === showingArchived);
+      const archivedCount = records.filter((record) => record.archived).length;
+      const singular = activeRecordSection.slice(0, -1).toLowerCase();
+      document.querySelector("#recordNameHeader").textContent = nameField;
+      document.querySelector("#recordStatusHeader").hidden = !statusField;
+      document.querySelector("#recordCount").textContent = `${visibleRecords.length} ${showingArchived ? "archived " : ""}${activeRecordSection.toLowerCase()}`;
       const archiveToggle = document.querySelector("#archiveToggle");
       archiveToggle.hidden = archivedCount === 0;
-      archiveToggle.textContent = showingArchived ? "Back to schemes" : `View archived (${archivedCount})`;
-      schemeRows.innerHTML = visibleSchemes.map((scheme) => `
+      archiveToggle.textContent = showingArchived ? `Back to ${activeRecordSection.toLowerCase()}` : `View archived (${archivedCount})`;
+      recordRows.innerHTML = visibleRecords.map((record) => `
         <tr>
-          <td>${escapeHTML(scheme.name)}</td>
-          <td><span class="scheme-status" data-status="${escapeHTML(scheme.status)}">${escapeHTML(scheme.status)}</span></td>
+          <td>${escapeHTML(record.fields[nameField] || "Untitled")}</td>
+          ${statusField ? `<td><span class="scheme-status" data-status="${escapeHTML(record.fields[statusField])}">${escapeHTML(record.fields[statusField])}</span></td>` : ""}
           <td><div class="scheme-actions">
-            <button class="row-action" type="button" data-action="edit" data-id="${escapeHTML(scheme.id)}">Edit</button>
-            <button class="row-action archive-action" type="button" data-action="${showingArchived ? "restore" : "archive"}" data-id="${escapeHTML(scheme.id)}">${showingArchived ? "Restore" : "Archive"}</button>
+            <button class="row-action" type="button" data-action="edit" data-record-id="${escapeHTML(record.id)}">Edit</button>
+            <button class="row-action archive-action" type="button" data-action="${showingArchived ? "restore" : "archive"}" data-record-id="${escapeHTML(record.id)}">${showingArchived ? "Restore" : "Archive"}</button>
           </div></td>
         </tr>`).join("");
-      if (visibleSchemes.length === 0) {
-        schemeRows.innerHTML = `<tr><td class="schemes-empty" colspan="3">${showingArchived ? "No archived schemes." : "No schemes yet. Add a scheme to get started."}</td></tr>`;
+      if (visibleRecords.length === 0) {
+        const emptyMessage = showingArchived ? `No archived ${activeRecordSection.toLowerCase()}.` : `No ${activeRecordSection.toLowerCase()} yet. Add a ${singular} to get started.`;
+        recordRows.innerHTML = `<tr><td class="records-empty" colspan="${statusField ? 3 : 2}">${emptyMessage}</td></tr>`;
       }
     }
 
-    function openSchemeDialog(scheme = null) {
-      editingSchemeId = scheme?.id ?? null;
-      document.querySelector("#schemeDialogTitle").textContent = scheme ? "Edit scheme" : "Add scheme";
-      schemeNameInput.value = scheme?.name ?? "";
-      schemeStatusInput.value = scheme?.status ?? "Inactive";
-      schemeDialog.showModal();
-      schemeNameInput.focus();
+    function openRecordDialog(record = null) {
+      const schema = sectionSchemas[activeRecordSection];
+      const singular = activeRecordSection.slice(0, -1).toLowerCase();
+      editingRecordId = record?.id ?? null;
+      document.querySelector("#recordDialogTitle").textContent = `${record ? "Edit" : "Add"} ${singular}`;
+      document.querySelector("#recordDialogIntro").textContent = `${record ? "Update" : "Enter"} the ${singular} details.`;
+      document.querySelector("#saveRecordButton").textContent = `Save ${singular}`;
+      recordFormFields.innerHTML = schema.fields.map((field, index) => {
+        const id = `recordField${index}`;
+        const value = record?.fields[field] ?? (field === "Active/Inactive" ? "Inactive" : "");
+        let control;
+        if (field === "Active/Inactive") {
+          control = `<select id="${id}" name="${id}"><option value="Active" ${value === "Active" ? "selected" : ""}>Active</option><option value="Inactive" ${value === "Inactive" ? "selected" : ""}>Inactive</option></select>`;
+        } else if (index === 0) {
+          control = `<input id="${id}" name="${id}" type="text" maxlength="250" value="${escapeHTML(value)}" required>`;
+        } else {
+          control = `<textarea id="${id}" name="${id}" rows="2" maxlength="5000">${escapeHTML(value)}</textarea>`;
+        }
+        return `<div class="field"><label for="${id}">${escapeHTML(field)}</label>${control}</div>`;
+      }).join("");
+      recordDialog.showModal();
+      recordFormFields.querySelector("input, textarea, select")?.focus();
     }
 
-    renderSchemes();
+    renderRecords();
 
     function showDashboard(username) {
       loginScreen.hidden = true;
@@ -444,63 +524,65 @@
       button.setAttribute("aria-current", "page");
       document.querySelector("#sectionTitle").textContent = section;
       document.querySelector("#breadcrumbTitle").textContent = section;
-      const isSchemes = section === "Schemes";
-      schemesPanel.hidden = !isSchemes;
-      document.querySelector("#addSchemeButton").hidden = !isSchemes;
-      document.querySelector("#genericContentSpace").hidden = isSchemes;
+      const isManagedSection = Object.hasOwn(sectionSchemas, section);
+      recordsPanel.hidden = !isManagedSection;
+      document.querySelector("#addRecordButton").hidden = !isManagedSection;
+      document.querySelector("#genericContentSpace").hidden = isManagedSection;
+      activeRecordSection = isManagedSection ? section : "";
       showingArchived = false;
-      if (isSchemes) renderSchemes();
+      if (isManagedSection) {
+        document.querySelector("#addRecordLabel").textContent = `Add ${section.slice(0, -1).toLowerCase()}`;
+        document.querySelector("#recordFeedback").textContent = "";
+        renderRecords();
+      }
     });
 
-    document.querySelector("#addSchemeButton").addEventListener("click", () => openSchemeDialog());
+    document.querySelector("#addRecordButton").addEventListener("click", () => openRecordDialog());
 
-    document.querySelector("#cancelSchemeButton").addEventListener("click", () => schemeDialog.close());
+    document.querySelector("#cancelRecordButton").addEventListener("click", () => recordDialog.close());
 
-    schemeForm.addEventListener("submit", (event) => {
+    recordForm.addEventListener("submit", (event) => {
       event.preventDefault();
-      const name = schemeNameInput.value.trim();
-      if (!name) return;
-      if (editingSchemeId) {
-        const scheme = schemes.find((item) => item.id === editingSchemeId);
-        if (scheme) {
-          scheme.name = name;
-          scheme.status = schemeStatusInput.value;
-        }
+      const schema = sectionSchemas[activeRecordSection];
+      const fields = Object.fromEntries(schema.fields.map((field, index) => [
+        field,
+        recordForm.elements.namedItem(`recordField${index}`).value.trim()
+      ]));
+      const records = recordsBySection[activeRecordSection];
+      if (editingRecordId) {
+        const record = records.find((item) => item.id === editingRecordId);
+        if (record) record.fields = fields;
       } else {
-        schemes.unshift({
-          id: `scheme-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`,
-          name,
-          status: schemeStatusInput.value,
-          archived: false
-        });
+        records.unshift({ id: `record-${Date.now().toString(36)}-${++recordSequence}`, fields, archived: false });
       }
-      persistSchemes();
-      renderSchemes();
-      document.querySelector("#schemeFeedback").textContent = "Scheme saved.";
-      schemeDialog.close();
+      persistRecords();
+      renderRecords();
+      document.querySelector("#recordFeedback").textContent = `${activeRecordSection.slice(0, -1)} saved.`;
+      recordDialog.close();
     });
 
     document.querySelector("#archiveToggle").addEventListener("click", () => {
       showingArchived = !showingArchived;
-      document.querySelector("#schemeFeedback").textContent = "";
-      renderSchemes();
+      document.querySelector("#recordFeedback").textContent = "";
+      renderRecords();
     });
 
-    schemeRows.addEventListener("click", (event) => {
+    recordRows.addEventListener("click", (event) => {
       const actionButton = event.target.closest("button[data-action]");
       if (!actionButton) return;
-      const scheme = schemes.find((item) => item.id === actionButton.dataset.id);
-      if (!scheme) return;
+      const records = recordsBySection[activeRecordSection];
+      const record = records.find((item) => item.id === actionButton.dataset.recordId);
+      if (!record) return;
       const action = actionButton.dataset.action;
       if (action === "edit") {
-        openSchemeDialog(scheme);
+        openRecordDialog(record);
         return;
       }
-      scheme.archived = action === "archive";
+      record.archived = action === "archive";
       if (action === "restore") showingArchived = false;
-      persistSchemes();
-      renderSchemes();
-      document.querySelector("#schemeFeedback").textContent = action === "archive" ? "Scheme archived." : "Scheme restored.";
+      persistRecords();
+      renderRecords();
+      document.querySelector("#recordFeedback").textContent = action === "archive" ? `${activeRecordSection.slice(0, -1)} archived.` : `${activeRecordSection.slice(0, -1)} restored.`;
     });
 
     document.querySelector("#logoutButton").addEventListener("click", () => {
