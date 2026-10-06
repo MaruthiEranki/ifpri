@@ -156,18 +156,24 @@
     .row-action.archive-action { color: #a05240; }
     .row-action.archive-action:hover { border-color: #d9a697; background: #fff8f5; }
     .record-feedback { min-height: 20px; margin: 10px 0; color: #55704f; font-size: 10px; }
-    .record-dialog { width: min(780px, calc(100vw - 32px)); max-height: calc(100dvh - 24px); overflow-y: auto; padding: 0; border: 1px solid #dfe4da; border-radius: 3px; color: var(--ink); background: #fff; box-shadow: 0 22px 70px rgb(20 40 30 / 22%); }
-    .record-dialog::backdrop { background: rgb(18 38 30 / 44%); }
-    .record-dialog form { padding: 26px; }
-    .record-dialog h2 { margin: 0; font: 400 27px/1.2 var(--serif); }
-    .record-dialog-intro { margin: 8px 0 24px; color: var(--muted); font-size: 11px; }
-    .record-form-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; }
-    .record-dialog .field { min-width: 0; margin-bottom: 15px; }
-    .record-dialog .field input, .record-dialog .field select, .record-dialog .field textarea { width: 100%; min-height: 42px; padding: 10px 12px; border: 1px solid #dce1d8; border-radius: 2px; color: var(--ink); background: #fff; font-size: 11px; }
-    .record-dialog .field textarea { min-height: 60px; resize: vertical; line-height: 1.5; }
-    .dialog-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 23px; }
-    .dialog-cancel { min-height: 38px; padding: 0 13px; border: 1px solid #dfe4da; border-radius: 2px; color: #43534b; background: #fff; font-size: 11px; }
-    .dialog-save { min-height: 38px; padding: 0 14px; border: 0; border-radius: 2px; color: #fff; background: var(--forest); font-size: 11px; font-weight: 700; }
+    .record-editor { margin-top: 22px; animation: arrive .3s ease both; }
+    .editor-back { display: inline-flex; align-items: center; gap: 9px; padding: 7px 0; border: 0; color: #65736a; background: transparent; font-size: 10px; font-weight: 700; }
+    .editor-back:hover { color: var(--forest); }
+    .editor-back span:first-child { color: var(--coral); font-size: 16px; font-weight: 400; }
+    .record-editor-heading { padding: 0 0 22px; border-bottom: 1px solid #dfe3da; }
+    .record-editor-kicker { margin: 17px 0 8px; color: #87934b; font-size: 9px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+    .record-editor-heading h2 { margin: 0; font: 400 32px/1.15 var(--serif); }
+    .record-editor-intro { margin: 8px 0 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+    .record-form-groups { padding-bottom: 12px; }
+    .record-form-group { padding: 22px 0 8px; border-bottom: 1px solid #e4e7df; }
+    .record-form-group h3 { margin: 0 0 16px; color: #34483e; font: 400 18px/1.2 var(--serif); }
+    .record-form-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 20px; }
+    .record-editor .field { min-width: 0; margin-bottom: 16px; }
+    .record-editor .field input, .record-editor .field select, .record-editor .field textarea { width: 100%; min-height: 42px; padding: 10px 12px; border: 1px solid #dce1d8; border-radius: 2px; color: var(--ink); background: #fff; font-size: 11px; }
+    .record-editor .field textarea { min-height: 66px; resize: vertical; line-height: 1.5; }
+    .record-editor-actions { position: sticky; bottom: 0; z-index: 2; display: flex; justify-content: flex-end; gap: 9px; margin-top: 7px; padding: 14px 0; border-top: 1px solid #dfe3da; background: rgb(244 245 239 / 96%); }
+    .editor-cancel { min-height: 40px; padding: 0 15px; border: 1px solid #dfe4da; border-radius: 2px; color: #43534b; background: #fff; font-size: 11px; }
+    .editor-save { min-height: 40px; padding: 0 16px; border: 0; border-radius: 2px; color: #fff; background: var(--forest); font-size: 11px; font-weight: 700; }
     .records-empty { padding: 32px 15px; color: var(--muted); background: #fff; font-size: 12px; text-align: center; }
 
     @keyframes arrive { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -202,7 +208,6 @@
       .record-table td:last-child { justify-self: end; }
       .scheme-actions { gap: 5px; }
       .row-action { min-height: 29px; padding: 0 8px; }
-      .record-dialog form { padding: 21px; }
       .record-form-fields { grid-template-columns: 1fr; }
     }
     @media (max-width: 380px) {
@@ -288,33 +293,38 @@
           <button id="addRecordButton" class="primary-action" type="button" hidden><span aria-hidden="true">+</span><span id="addRecordLabel">Add record</span></button>
         </div>
         <section id="recordsPanel" class="records-panel" aria-label="Records list" hidden>
-          <div class="record-toolbar">
-            <div id="recordCount" class="record-count" aria-live="polite"></div>
-            <button id="archiveToggle" class="archive-toggle" type="button" hidden></button>
+          <div id="recordListView">
+            <div class="record-toolbar">
+              <div id="recordCount" class="record-count" aria-live="polite"></div>
+              <button id="archiveToggle" class="archive-toggle" type="button" hidden></button>
+            </div>
+            <table class="record-table">
+              <thead><tr><th id="recordNameHeader" scope="col">Name</th><th id="recordStatusHeader" scope="col" hidden>Status</th><th scope="col">Actions</th></tr></thead>
+              <tbody id="recordRows"></tbody>
+            </table>
+            <p id="recordFeedback" class="record-feedback" aria-live="polite"></p>
           </div>
-          <table class="record-table">
-            <thead><tr><th id="recordNameHeader" scope="col">Name</th><th id="recordStatusHeader" scope="col" hidden>Status</th><th scope="col">Actions</th></tr></thead>
-            <tbody id="recordRows"></tbody>
-          </table>
-          <p id="recordFeedback" class="record-feedback" aria-live="polite"></p>
+          <section id="recordEditor" class="record-editor" aria-labelledby="recordEditorTitle" hidden>
+            <div class="record-editor-heading">
+              <button id="recordBackButton" class="editor-back" type="button"><span aria-hidden="true">←</span><span>Back to <span id="recordBackSection">Schemes</span></span></button>
+              <p id="recordEditorKicker" class="record-editor-kicker">Schemes / New record</p>
+              <h2 id="recordEditorTitle">Add scheme</h2>
+              <p id="recordEditorIntro" class="record-editor-intro"></p>
+            </div>
+            <form id="recordForm">
+              <div id="recordFormGroups" class="record-form-groups"></div>
+              <div class="record-editor-actions">
+                <button class="editor-cancel" type="button" id="cancelRecordButton">Cancel</button>
+                <button id="saveRecordButton" class="editor-save" type="submit">Save changes</button>
+              </div>
+            </form>
+          </section>
         </section>
         <div id="genericContentSpace" class="empty-space" aria-live="polite"></div>
         <footer class="content-footer">IFPRI · PROGRAM INTELLIGENCE</footer>
       </div>
     </section>
   </main>
-
-  <dialog id="recordDialog" class="record-dialog" aria-labelledby="recordDialogTitle">
-    <form id="recordForm">
-      <h2 id="recordDialogTitle">Add record</h2>
-      <p id="recordDialogIntro" class="record-dialog-intro"></p>
-      <div id="recordFormFields" class="record-form-fields"></div>
-      <div class="dialog-actions">
-        <button class="dialog-cancel" type="button" id="cancelRecordButton">Cancel</button>
-        <button id="saveRecordButton" class="dialog-save" type="submit">Save</button>
-      </div>
-    </form>
-  </dialog>
 
   <script>
     const loginScreen = document.querySelector("#loginScreen");
@@ -326,9 +336,8 @@
     const revealPassword = document.querySelector("#revealPassword");
     const recordsPanel = document.querySelector("#recordsPanel");
     const recordRows = document.querySelector("#recordRows");
-    const recordDialog = document.querySelector("#recordDialog");
     const recordForm = document.querySelector("#recordForm");
-    const recordFormFields = document.querySelector("#recordFormFields");
+    const recordFormGroups = document.querySelector("#recordFormGroups");
     const recordStoragePrefix = "ifpri-records-";
     const sectionSchemas = {
       Schemes: {
@@ -337,6 +346,11 @@
           "Schemes official source", "If available - FAQ", "Occupation", "Owner",
           "Reach", "Impact", "Learnings", "Case studies references", "SEWA vertical",
           "Good to have citizens testimonials and experiance about the schmemes", "Active/Inactive"
+        ],
+        groups: [
+          { title: "Scheme overview", fields: ["Scheme Name", "Description", "Eligibility Criteria", "Application form", "Schemes official source", "If available - FAQ"] },
+          { title: "Coverage and status", fields: ["Occupation", "Owner", "Reach", "SEWA vertical", "Active/Inactive"] },
+          { title: "Impact and learning", fields: ["Impact", "Learnings", "Case studies references", "Good to have citizens testimonials and experiance about the schmemes"] }
         ],
         samples: [
           "Wheel Hoe (Inter-cultivation Tool)",
@@ -366,6 +380,11 @@
           "Impact", "Short comings", "Learnings", "case studies references",
           "SEWA vertical", "Program Web link", "Any other reference material"
         ],
+        groups: [
+          { title: "Program overview", fields: ["Name", "Description", "Goal"] },
+          { title: "Audience and coverage", fields: ["Target user group", "Target Geogrpahies", "SEWA vertical"] },
+          { title: "Impact and resources", fields: ["Impact", "Short comings", "Learnings", "case studies references", "Program Web link", "Any other reference material"] }
+        ],
         samples: []
       },
       Campaigns: {
@@ -373,6 +392,11 @@
           "Name", "Description", "Goal", "Target user group", "Key geographies",
           "Target livelihood", "Duration", "vertical", "Impact", "Reach",
           "Case study reference", "Campaign web link", "Reference resources"
+        ],
+        groups: [
+          { title: "Campaign overview", fields: ["Name", "Description", "Goal", "Duration"] },
+          { title: "Audience and geography", fields: ["Target user group", "Key geographies", "Target livelihood", "vertical"] },
+          { title: "Impact and references", fields: ["Impact", "Reach", "Case study reference", "Campaign web link", "Reference resources"] }
         ],
         samples: [
           "Agriculture campaining", "Swacch Aakash Campaign", "Technology", "Kamla",
@@ -463,28 +487,59 @@
       }
     }
 
-    function openRecordDialog(record = null) {
+    function openRecordEditor(record = null) {
       const schema = sectionSchemas[activeRecordSection];
       const singular = activeRecordSection.slice(0, -1).toLowerCase();
       editingRecordId = record?.id ?? null;
-      document.querySelector("#recordDialogTitle").textContent = `${record ? "Edit" : "Add"} ${singular}`;
-      document.querySelector("#recordDialogIntro").textContent = `${record ? "Update" : "Enter"} the ${singular} details.`;
-      document.querySelector("#saveRecordButton").textContent = `Save ${singular}`;
-      recordFormFields.innerHTML = schema.fields.map((field, index) => {
-        const id = `recordField${index}`;
-        const value = record?.fields[field] ?? (field === "Active/Inactive" ? "Inactive" : "");
-        let control;
-        if (field === "Active/Inactive") {
-          control = `<select id="${id}" name="${id}"><option value="Active" ${value === "Active" ? "selected" : ""}>Active</option><option value="Inactive" ${value === "Inactive" ? "selected" : ""}>Inactive</option></select>`;
-        } else if (index === 0) {
-          control = `<input id="${id}" name="${id}" type="text" maxlength="250" value="${escapeHTML(value)}" required>`;
-        } else {
-          control = `<textarea id="${id}" name="${id}" rows="2" maxlength="5000">${escapeHTML(value)}</textarea>`;
-        }
-        return `<div class="field"><label for="${id}">${escapeHTML(field)}</label>${control}</div>`;
-      }).join("");
-      recordDialog.showModal();
-      recordFormFields.querySelector("input, textarea, select")?.focus();
+      if (!record) {
+        showingArchived = false;
+        renderRecords();
+      }
+      const editorTitle = `${record ? "Edit" : "Add"} ${singular}`;
+      document.querySelector("#recordEditorKicker").textContent = `${activeRecordSection} / ${record ? "Edit" : "New"}`;
+      document.querySelector("#recordEditorTitle").textContent = editorTitle;
+      document.querySelector("#recordEditorIntro").textContent = `${record ? "Update" : "Enter"} the ${singular} details below.`;
+      document.querySelector("#recordBackSection").textContent = activeRecordSection.toLowerCase();
+      document.querySelector("#saveRecordButton").textContent = record ? "Save changes" : `Add ${singular}`;
+      const longFields = new Set([
+        "Description", "Eligibility Criteria", "Goal", "Impact", "Learnings",
+        "Good to have citizens testimonials and experiance about the schmemes",
+        "Any other reference material", "Reference resources"
+      ]);
+      recordFormGroups.innerHTML = schema.groups.map((group) => `
+        <section class="record-form-group">
+          <h3>${escapeHTML(group.title)}</h3>
+          <div class="record-form-fields">
+            ${group.fields.map((field) => {
+              const index = schema.fields.indexOf(field);
+              const id = `recordField${index}`;
+              const value = record?.fields[field] ?? (field === "Active/Inactive" ? "Inactive" : "");
+              let control;
+              if (field === "Active/Inactive") {
+                control = `<select id="${id}" name="${id}"><option value="Active" ${value === "Active" ? "selected" : ""}>Active</option><option value="Inactive" ${value === "Inactive" ? "selected" : ""}>Inactive</option></select>`;
+              } else if (index === 0) {
+                control = `<input id="${id}" name="${id}" type="text" maxlength="250" value="${escapeHTML(value)}" required>`;
+              } else {
+                control = `<textarea id="${id}" name="${id}" rows="2" maxlength="5000">${escapeHTML(value)}</textarea>`;
+              }
+              const fieldClass = longFields.has(field) ? "field record-field-wide" : "field";
+              return `<div class="${fieldClass}"><label for="${id}">${escapeHTML(field)}</label>${control}</div>`;
+            }).join("")}
+          </div>
+        </section>`).join("");
+      document.querySelector("#recordListView").hidden = true;
+      document.querySelector("#recordEditor").hidden = false;
+      document.querySelector("#addRecordButton").hidden = true;
+      recordFormGroups.querySelector("input, textarea, select")?.focus();
+      document.querySelector("#recordEditor").scrollIntoView({ block: "start", behavior: "smooth" });
+    }
+
+    function closeRecordEditor() {
+      document.querySelector("#recordEditor").hidden = true;
+      document.querySelector("#recordListView").hidden = false;
+      document.querySelector("#addRecordButton").hidden = false;
+      editingRecordId = null;
+      recordForm.reset();
     }
 
     renderRecords();
@@ -519,6 +574,7 @@
     document.querySelector("#navigation").addEventListener("click", (event) => {
       const button = event.target.closest("button[data-section]");
       if (!button) return;
+      if (!document.querySelector("#recordEditor").hidden) closeRecordEditor();
       const section = button.dataset.section;
       document.querySelectorAll(".nav-item").forEach((item) => item.removeAttribute("aria-current"));
       button.setAttribute("aria-current", "page");
@@ -537,9 +593,10 @@
       }
     });
 
-    document.querySelector("#addRecordButton").addEventListener("click", () => openRecordDialog());
+    document.querySelector("#addRecordButton").addEventListener("click", () => openRecordEditor());
 
-    document.querySelector("#cancelRecordButton").addEventListener("click", () => recordDialog.close());
+    document.querySelector("#cancelRecordButton").addEventListener("click", () => closeRecordEditor());
+    document.querySelector("#recordBackButton").addEventListener("click", () => closeRecordEditor());
 
     recordForm.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -555,10 +612,11 @@
       } else {
         records.unshift({ id: `record-${Date.now().toString(36)}-${++recordSequence}`, fields, archived: false });
       }
+      const message = `${activeRecordSection.slice(0, -1)} saved.`;
       persistRecords();
+      closeRecordEditor();
       renderRecords();
-      document.querySelector("#recordFeedback").textContent = `${activeRecordSection.slice(0, -1)} saved.`;
-      recordDialog.close();
+      document.querySelector("#recordFeedback").textContent = message;
     });
 
     document.querySelector("#archiveToggle").addEventListener("click", () => {
@@ -575,7 +633,7 @@
       if (!record) return;
       const action = actionButton.dataset.action;
       if (action === "edit") {
-        openRecordDialog(record);
+        openRecordEditor(record);
         return;
       }
       record.archived = action === "archive";
